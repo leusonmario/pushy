@@ -71,6 +71,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.16</version>
         <configuration>
+<testFailureIgnore>true</testFailureIgnore>
             <argLine>-Dorg.slf4j.simpleLogger.defaultLogLevel=warn</argLine>
         </configuration>
       </plugin>
@@ -107,7 +108,18 @@
           </execution>
         </executions>
       </plugin>
-    </plugins>
+    <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+              <format>xml</format>
+              <maxmem>256m</maxmem>
+              <!-- aggregated reports for multi-module projects -->
+              <aggregate>true</aggregate>
+          </configuration>
+         </plugin>
+        </plugins>
   </build>
   <profiles>
     <profile>
@@ -134,6 +146,17 @@
               </execution>
             </executions>
           </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+              <format>xml</format>
+              <maxmem>256m</maxmem>
+              <!-- aggregated reports for multi-module projects -->
+              <aggregate>true</aggregate>
+          </configuration>
+         </plugin>
         </plugins>
       </build>
     </profile>
